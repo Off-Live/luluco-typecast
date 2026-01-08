@@ -1,0 +1,582 @@
+---
+lulu_reaction_voice:
+  version: "1.1"
+  locale: "en-US"
+
+  meta:
+    design_principles:
+      - short_and_light
+      - no_judgement
+      - no_instruction
+      - offline_first
+      - composable_audio_only
+    notes:
+      - Long lines are used for first-time or long-time-no-see colors
+      - Short lines are for regular taps
+      - Use Nickname as a concrete thing kids know
+
+  timing:
+    cooldown:
+      voice_seconds: 10
+      micro_seconds: 2
+    burst:
+      window_seconds: 3
+      threshold_changes: 2
+    debounce_silence_seconds: 2.5
+
+  templates:
+    long:
+      # 여러 개 중 랜덤 선택 추천
+      - id: lt_a
+        text: "{color_title}! {color_title} like a {nickname}. {color_title}!"
+      - id: lt_b
+        text: "Wow—{color_title}! Like a {nickname}. {color_title}!"
+      - id: lt_c
+        text: "{color_title}! Like a {nickname}. So {color_title}!"
+      - id: lt_d_soft
+        text: "{color_title}. Soft like {nickname}. {color_title}."
+    short:
+      - id: st_a
+        text: "{color_title}!"
+      - id: st_b
+        text: "Nice {color_title}!"
+      - id: st_c
+        text: "{color_title}—yay!"
+
+  variables:
+    colors:
+      # id 규칙: c_{group}_{role}
+      # text는 단독 명사/짧은 구. (UI/조합용)
+      - id: c_red_light
+        text: "light red"
+        group: "Red"
+        role: "Light"
+        name: "Light Red"
+        nickname: "Strawberry"
+        hex: "#FF6B6B"
+        hsl: "hsl(0, 100%, 71%)"
+      - id: c_red_base
+        text: "red"
+        group: "Red"
+        role: "Base"
+        name: "Red"
+        nickname: "Apple"
+        hex: "#E53935"
+        hsl: "hsl(1, 77%, 55%)"
+      - id: c_red_dark
+        text: "dark red"
+        group: "Red"
+        role: "Dark"
+        name: "Dark Red"
+        nickname: "Cherry"
+        hex: "#B71C1C"
+        hsl: "hsl(0, 73%, 41%)"
+
+      - id: c_orange_light
+        text: "light orange"
+        group: "Orange"
+        role: "Light"
+        name: "Light Orange"
+        nickname: "Apricot"
+        hex: "#FFB074"
+        hsl: "hsl(26, 100%, 73%)"
+      - id: c_orange_base
+        text: "orange"
+        group: "Orange"
+        role: "Base"
+        name: "Orange"
+        nickname: "Tangerine"
+        hex: "#FB8C00"
+        hsl: "hsl(33, 100%, 49%)"
+      - id: c_orange_dark
+        text: "dark orange"
+        group: "Orange"
+        role: "Dark"
+        name: "Dark Orange"
+        nickname: "Pumpkin"
+        hex: "#E65100"
+        hsl: "hsl(21, 100%, 45%)"
+
+      - id: c_yellow_light
+        text: "light yellow"
+        group: "Yellow"
+        role: "Light"
+        name: "Light Yellow"
+        nickname: "Banana"
+        hex: "#FFF59D"
+        hsl: "hsl(54, 100%, 81%)"
+      - id: c_yellow_base
+        text: "yellow"
+        group: "Yellow"
+        role: "Base"
+        name: "Yellow"
+        nickname: "Sun"
+        hex: "#FFEB3B"
+        hsl: "hsl(54, 100%, 62%)"
+      - id: c_yellow_dark
+        text: "dark yellow"
+        group: "Yellow"
+        role: "Dark"
+        name: "Dark Yellow"
+        nickname: "Honey"
+        hex: "#F9A825"
+        hsl: "hsl(40, 95%, 56%)"
+
+      - id: c_green_light
+        text: "light green"
+        group: "Green"
+        role: "Light"
+        name: "Light Green"
+        nickname: "Sprout"
+        hex: "#A5D6A7"
+        hsl: "hsl(122, 29%, 74%)"
+      - id: c_green_base
+        text: "green"
+        group: "Green"
+        role: "Base"
+        name: "Green"
+        nickname: "Grass"
+        hex: "#43A047"
+        hsl: "hsl(123, 41%, 44%)"
+      - id: c_green_dark
+        text: "dark green"
+        group: "Green"
+        role: "Dark"
+        name: "Dark Green"
+        nickname: "Forest"
+        hex: "#1B5E20"
+        hsl: "hsl(124, 55%, 24%)"
+
+      - id: c_blue_light
+        text: "light blue"
+        group: "Blue"
+        role: "Light"
+        name: "Light Blue"
+        nickname: "Sky"
+        hex: "#81D4FA"
+        hsl: "hsl(199, 93%, 75%)"
+      - id: c_blue_base
+        text: "blue"
+        group: "Blue"
+        role: "Base"
+        name: "Blue"
+        nickname: "Sea"
+        hex: "#1E88E5"
+        hsl: "hsl(208, 79%, 51%)"
+      - id: c_blue_dark
+        text: "dark blue"
+        group: "Blue"
+        role: "Dark"
+        name: "Dark Blue"
+        nickname: "Deep Sea"
+        hex: "#0D47A1"
+        hsl: "hsl(214, 85%, 34%)"
+
+      - id: c_purple_light
+        text: "light purple"
+        group: "Purple"
+        role: "Light"
+        name: "Light Purple"
+        nickname: "Lavender"
+        hex: "#CE93D8"
+        hsl: "hsl(291, 44%, 71%)"
+      - id: c_purple_base
+        text: "purple"
+        group: "Purple"
+        role: "Base"
+        name: "Purple"
+        nickname: "Grape"
+        hex: "#8E24AA"
+        hsl: "hsl(288, 65%, 40%)"
+      - id: c_purple_dark
+        text: "dark purple"
+        group: "Purple"
+        role: "Dark"
+        name: "Dark Purple"
+        nickname: "Grape Jam"
+        hex: "#4A148C"
+        hsl: "hsl(271, 74%, 31%)"
+
+      - id: c_pink_light
+        text: "light pink"
+        group: "Pink"
+        role: "Light"
+        name: "Light Pink"
+        nickname: "Cherry Blossom"
+        hex: "#F8BBD0"
+        hsl: "hsl(340, 73%, 85%)"
+      - id: c_pink_base
+        text: "pink"
+        group: "Pink"
+        role: "Base"
+        name: "Pink"
+        nickname: "Strawberry Milk"
+        hex: "#FF5DA2"
+        hsl: "hsl(335, 100%, 68%)"
+      - id: c_pink_dark
+        text: "dark pink"
+        group: "Pink"
+        role: "Dark"
+        name: "Dark Pink"
+        nickname: "Rose"
+        hex: "#C2185B"
+        hsl: "hsl(336, 78%, 43%)"
+
+      - id: c_brown_light
+        text: "light brown"
+        group: "Brown"
+        role: "Light"
+        name: "Light Brown"
+        nickname: "Sand"
+        hex: "#D7CCC8"
+        hsl: "hsl(17, 16%, 82%)"
+      - id: c_brown_base
+        text: "brown"
+        group: "Brown"
+        role: "Base"
+        name: "Brown"
+        nickname: "Chocolate"
+        hex: "#6D4C41"
+        hsl: "hsl(14, 25%, 34%)"
+      - id: c_brown_dark
+        text: "dark brown"
+        group: "Brown"
+        role: "Dark"
+        name: "Dark Brown"
+        nickname: "Wood"
+        hex: "#3E2723"
+        hsl: "hsl(11, 28%, 19%)"
+
+      - id: c_lime_light
+        text: "light lime"
+        group: "Lime/Apple Green"
+        role: "Light"
+        name: "Light Lime"
+        nickname: "Lime Milk"
+        hex: "#F1F8C9"
+        hsl: "hsl(67, 78%, 87%)"
+      - id: c_lime_base
+        text: "apple green"
+        group: "Lime/Apple Green"
+        role: "Base"
+        name: "Apple Green"
+        nickname: "Green Apple"
+        hex: "#C5E86C"
+        hsl: "hsl(75, 73%, 67%)"
+      - id: c_lime_dark
+        text: "lime green"
+        group: "Lime/Apple Green"
+        role: "Dark"
+        name: "Lime Green"
+        nickname: "Lime"
+        hex: "#8BC34A"
+        hsl: "hsl(88, 50%, 52%)"
+
+      - id: c_cream_light
+        text: "milk white"
+        group: "Cream"
+        role: "Light"
+        name: "Milk White"
+        nickname: "Milk"
+        hex: "#FAFAF7"
+        hsl: "hsl(60, 21%, 97%)"
+      - id: c_cream_base
+        text: "cream"
+        group: "Cream"
+        role: "Base"
+        name: "Cream"
+        nickname: "Vanilla"
+        hex: "#FFF1D6"
+        hsl: "hsl(39, 100%, 92%)"
+      - id: c_cream_dark
+        text: "soft beige"
+        group: "Cream"
+        role: "Dark"
+        name: "Soft Beige"
+        nickname: "Cookie"
+        hex: "#EAD7B7"
+        hsl: "hsl(38, 53%, 82%)"
+
+      - id: c_turquoise_light
+        text: "light turquoise"
+        group: "Turquoise"
+        role: "Light"
+        name: "Light Turquoise"
+        nickname: "Mint Ice"
+        hex: "#E0F7F4"
+        hsl: "hsl(170, 52%, 92%)"
+      - id: c_turquoise_base
+        text: "turquoise"
+        group: "Turquoise"
+        role: "Base"
+        name: "Turquoise"
+        nickname: "Aqua"
+        hex: "#4DD0E1"
+        hsl: "hsl(187, 70%, 60%)"
+      - id: c_turquoise_dark
+        text: "dark turquoise"
+        group: "Turquoise"
+        role: "Dark"
+        name: "Dark Turquoise"
+        nickname: "Deep Aqua"
+        hex: "#00838F"
+        hsl: "hsl(186, 100%, 28%)"
+
+      - id: c_gray_light
+        text: "light gray"
+        group: "Gray"
+        role: "Light"
+        name: "Light Gray"
+        nickname: "Cloud"
+        hex: "#CFD8DC"
+        hsl: "hsl(200, 16%, 84%)"
+      - id: c_gray_base
+        text: "gray"
+        group: "Gray"
+        role: "Base"
+        name: "Gray"
+        nickname: "Stone"
+        hex: "#78909C"
+        hsl: "hsl(200, 15%, 54%)"
+      - id: c_gray_dark
+        text: "dark gray"
+        group: "Gray"
+        role: "Dark"
+        name: "Dark Gray"
+        nickname: "Dark Stone"
+        hex: "#263238"
+        hsl: "hsl(200, 18%, 18%)"
+
+  utterances:
+    # “확정 문장” 버전 (바로 녹음/tts 가능)
+    long_by_color:
+      # 규칙: "{ColorTitle}! {ColorTitle} like a {nickname}. {ColorTitle}!"
+      - id: u_long_red_light
+        color_id: c_red_light
+        text: "Light Red! Light Red like a strawberry. Light Red!"
+      - id: u_long_red_base
+        color_id: c_red_base
+        text: "Red! Red like an apple. Red!"
+      - id: u_long_red_dark
+        color_id: c_red_dark
+        text: "Dark Red! Dark Red like a cherry. Dark Red!"
+
+      - id: u_long_orange_light
+        color_id: c_orange_light
+        text: "Light Orange! Light Orange like an apricot. Light Orange!"
+      - id: u_long_orange_base
+        color_id: c_orange_base
+        text: "Orange! Orange like a tangerine. Orange!"
+      - id: u_long_orange_dark
+        color_id: c_orange_dark
+        text: "Dark Orange! Dark Orange like a pumpkin. Dark Orange!"
+
+      - id: u_long_yellow_light
+        color_id: c_yellow_light
+        text: "Light Yellow! Light Yellow like a banana. Light Yellow!"
+      - id: u_long_yellow_base
+        color_id: c_yellow_base
+        text: "Yellow! Yellow like the sun. Yellow!"
+      - id: u_long_yellow_dark
+        color_id: c_yellow_dark
+        text: "Dark Yellow! Dark Yellow like honey. Dark Yellow!"
+
+      - id: u_long_green_light
+        color_id: c_green_light
+        text: "Light Green! Light Green like a sprout. Light Green!"
+      - id: u_long_green_base
+        color_id: c_green_base
+        text: "Green! Green like grass. Green!"
+      - id: u_long_green_dark
+        color_id: c_green_dark
+        text: "Dark Green! Dark Green like a forest. Dark Green!"
+
+      - id: u_long_blue_light
+        color_id: c_blue_light
+        text: "Light Blue! Light Blue like the sky. Light Blue!"
+      - id: u_long_blue_base
+        color_id: c_blue_base
+        text: "Blue! Blue like the sea. Blue!"
+      - id: u_long_blue_dark
+        color_id: c_blue_dark
+        text: "Dark Blue! Dark Blue like the deep sea. Dark Blue!"
+
+      - id: u_long_purple_light
+        color_id: c_purple_light
+        text: "Light Purple! Light Purple like lavender. Light Purple!"
+      - id: u_long_purple_base
+        color_id: c_purple_base
+        text: "Purple! Purple like a grape. Purple!"
+      - id: u_long_purple_dark
+        color_id: c_purple_dark
+        text: "Dark Purple! Dark Purple like grape jam. Dark Purple!"
+
+      - id: u_long_pink_light
+        color_id: c_pink_light
+        text: "Light Pink! Light Pink like a cherry blossom. Light Pink!"
+      - id: u_long_pink_base
+        color_id: c_pink_base
+        text: "Pink! Pink like strawberry milk. Pink!"
+      - id: u_long_pink_dark
+        color_id: c_pink_dark
+        text: "Dark Pink! Dark Pink like a rose. Dark Pink!"
+
+      - id: u_long_brown_light
+        color_id: c_brown_light
+        text: "Light Brown! Light Brown like sand. Light Brown!"
+      - id: u_long_brown_base
+        color_id: c_brown_base
+        text: "Brown! Brown like chocolate. Brown!"
+      - id: u_long_brown_dark
+        color_id: c_brown_dark
+        text: "Dark Brown! Dark Brown like wood. Dark Brown!"
+
+      - id: u_long_lime_light
+        color_id: c_lime_light
+        text: "Light Lime! Light Lime like lime milk. Light Lime!"
+      - id: u_long_lime_base
+        color_id: c_lime_base
+        text: "Apple Green! Apple Green like a green apple. Apple Green!"
+      - id: u_long_lime_dark
+        color_id: c_lime_dark
+        text: "Lime Green! Lime Green like a lime. Lime Green!"
+
+      - id: u_long_cream_light
+        color_id: c_cream_light
+        text: "Milk White. Soft like milk. Milk White."
+      - id: u_long_cream_base
+        color_id: c_cream_base
+        text: "Cream. Soft like vanilla. Cream."
+      - id: u_long_cream_dark
+        color_id: c_cream_dark
+        text: "Soft Beige. Soft like a cookie. Soft Beige."
+
+      - id: u_long_turquoise_light
+        color_id: c_turquoise_light
+        text: "Light Turquoise! Light Turquoise like mint ice. Light Turquoise!"
+      - id: u_long_turquoise_base
+        color_id: c_turquoise_base
+        text: "Turquoise! Turquoise like aqua. Turquoise!"
+      - id: u_long_turquoise_dark
+        color_id: c_turquoise_dark
+        text: "Dark Turquoise! Dark Turquoise like deep aqua. Dark Turquoise!"
+
+      - id: u_long_gray_light
+        color_id: c_gray_light
+        text: "Light Gray! Light Gray like a cloud. Light Gray!"
+      - id: u_long_gray_base
+        color_id: c_gray_base
+        text: "Gray! Gray like a stone. Gray!"
+      - id: u_long_gray_dark
+        color_id: c_gray_dark
+        text: "Dark Gray! Dark Gray like dark stone. Dark Gray!"
+
+    short_by_color:
+      - id: u_short_red_light
+        color_id: c_red_light
+        text: "Light Red!"
+      - id: u_short_red_base
+        color_id: c_red_base
+        text: "Red!"
+      - id: u_short_red_dark
+        color_id: c_red_dark
+        text: "Dark Red!"
+      - id: u_short_orange_light
+        color_id: c_orange_light
+        text: "Light Orange!"
+      - id: u_short_orange_base
+        color_id: c_orange_base
+        text: "Orange!"
+      - id: u_short_orange_dark
+        color_id: c_orange_dark
+        text: "Dark Orange!"
+      - id: u_short_yellow_light
+        color_id: c_yellow_light
+        text: "Light Yellow!"
+      - id: u_short_yellow_base
+        color_id: c_yellow_base
+        text: "Yellow!"
+      - id: u_short_yellow_dark
+        color_id: c_yellow_dark
+        text: "Dark Yellow!"
+      - id: u_short_green_light
+        color_id: c_green_light
+        text: "Light Green!"
+      - id: u_short_green_base
+        color_id: c_green_base
+        text: "Green!"
+      - id: u_short_green_dark
+        color_id: c_green_dark
+        text: "Dark Green!"
+      - id: u_short_blue_light
+        color_id: c_blue_light
+        text: "Light Blue!"
+      - id: u_short_blue_base
+        color_id: c_blue_base
+        text: "Blue!"
+      - id: u_short_blue_dark
+        color_id: c_blue_dark
+        text: "Dark Blue!"
+      - id: u_short_purple_light
+        color_id: c_purple_light
+        text: "Light Purple!"
+      - id: u_short_purple_base
+        color_id: c_purple_base
+        text: "Purple!"
+      - id: u_short_purple_dark
+        color_id: c_purple_dark
+        text: "Dark Purple!"
+      - id: u_short_pink_light
+        color_id: c_pink_light
+        text: "Light Pink!"
+      - id: u_short_pink_base
+        color_id: c_pink_base
+        text: "Pink!"
+      - id: u_short_pink_dark
+        color_id: c_pink_dark
+        text: "Dark Pink!"
+      - id: u_short_brown_light
+        color_id: c_brown_light
+        text: "Light Brown!"
+      - id: u_short_brown_base
+        color_id: c_brown_base
+        text: "Brown!"
+      - id: u_short_brown_dark
+        color_id: c_brown_dark
+        text: "Dark Brown!"
+      - id: u_short_lime_light
+        color_id: c_lime_light
+        text: "Light Lime!"
+      - id: u_short_lime_base
+        color_id: c_lime_base
+        text: "Apple Green!"
+      - id: u_short_lime_dark
+        color_id: c_lime_dark
+        text: "Lime Green!"
+      - id: u_short_cream_light
+        color_id: c_cream_light
+        text: "Milk White!"
+      - id: u_short_cream_base
+        color_id: c_cream_base
+        text: "Cream!"
+      - id: u_short_cream_dark
+        color_id: c_cream_dark
+        text: "Soft Beige!"
+      - id: u_short_turquoise_light
+        color_id: c_turquoise_light
+        text: "Light Turquoise!"
+      - id: u_short_turquoise_base
+        color_id: c_turquoise_base
+        text: "Turquoise!"
+      - id: u_short_turquoise_dark
+        color_id: c_turquoise_dark
+        text: "Dark Turquoise!"
+      - id: u_short_gray_light
+        color_id: c_gray_light
+        text: "Light Gray!"
+      - id: u_short_gray_base
+        color_id: c_gray_base
+        text: "Gray!"
+      - id: u_short_gray_dark
+        color_id: c_gray_dark
+        text: "Dark Gray!"

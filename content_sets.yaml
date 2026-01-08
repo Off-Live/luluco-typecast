@@ -1,0 +1,208 @@
+lulu_reaction_voice:
+  version: "1.0"
+  locale: "en-US"
+
+  meta:
+    design_principles:
+      - short_and_light
+      - no_judgement
+      - no_instruction
+      - offline_first
+      - composable_audio_only
+    notes:
+      - Prefix must sound open-ended
+      - Variables must be standalone nouns
+      - Micro reactions are single clips only
+      - Completion voices are full sentences (no composition)
+
+  timing:
+    cooldown:
+      voice_seconds: 10
+      micro_seconds: 2
+    burst:
+      window_seconds: 3
+      threshold_changes: 2
+    debounce_silence_seconds: 2.5
+
+  prefixes:
+    # 열린 문장 / 뒤에 단어가 자연스럽게 붙어야 함
+    - id: p_nice_pick
+      text: "Nice pick—"
+    - id: p_lets_try
+      text: "Let’s try"
+    - id: p_how_about
+      text: "How about"
+    - id: p_i_see
+      text: "I see"
+    - id: p_okay
+      text: "Okay—"
+    - id: p_hmm
+      text: "Hmm—"
+    - id: p_this_one
+      text: "This one—"
+    - id: p_color_time
+      text: "Color time—"
+    - id: p_looks_like
+      text: "Looks like"
+    - id: p_you_chose
+      text: "You chose"
+    - id: p_try_some
+      text: "Try some"
+    - id: p_lets_go_with
+      text: "Let’s go with"
+    - id: p_i_like
+      text: "I like"
+    - id: p_oh_its
+      text: "Oh—it’s"
+    - id: p_that_one
+      text: "That one—"
+    - id: p_ready_for
+      text: "Ready for"
+    - id: p_time_for
+      text: "Time for"
+    - id: p_what_about
+      text: "What about"
+    - id: p_lets_use
+      text: "Let’s use"
+    - id: p_here_comes
+      text: "Here comes"
+
+  suffixes:
+    # 선택 사항 / 없어도 문장이 자연스러워야 함
+    - id: s_exclaim
+      text: "!"
+    - id: s_nice
+      text: "—nice!"
+    - id: s_okay
+      text: "—okay!"
+    - id: s_cool
+      text: "—cool!"
+    - id: s_lets_go
+      text: "—let’s go!"
+
+  variables:
+    colors:
+      # 단독 명사 / 중립 억양
+      - id: c_red
+        text: "red"
+      - id: c_blue
+        text: "blue"
+      - id: c_yellow
+        text: "yellow"
+      - id: c_green
+        text: "green"
+      - id: c_orange
+        text: "orange"
+      - id: c_purple
+        text: "purple"
+      - id: c_pink
+        text: "pink"
+      - id: c_brown
+        text: "brown"
+      - id: c_black
+        text: "black"
+      - id: c_white
+        text: "white"
+      - id: c_gray
+        text: "gray"
+      - id: c_light_blue
+        text: "light blue"
+      - id: c_dark_green
+        text: "dark green"
+      - id: c_rainbow
+        text: "rainbow"
+      - id: c_gold
+        text: "gold"
+      - id: c_silver
+        text: "silver"
+      - id: c_sky_blue
+        text: "sky blue"
+      - id: c_leaf_green
+        text: "leaf green"
+      - id: c_sun_yellow
+        text: "sun yellow"
+      - id: c_ocean_blue
+        text: "ocean blue"
+
+    tools:
+      # 붓 / 도구 명칭
+      - id: t_brush
+        text: "brush"
+      - id: t_big_brush
+        text: "big brush"
+      - id: t_thin_brush
+        text: "thin brush"
+      - id: t_crayon
+        text: "crayon"
+      - id: t_marker
+        text: "marker"
+      - id: t_soft_brush
+        text: "soft brush"
+      - id: t_hard_brush
+        text: "hard brush"
+
+  micro_reactions:
+    # 항상 단독 클립
+    - id: m_ooh
+      text: "Ooh!"
+    - id: m_oh
+      text: "Oh!"
+    - id: m_nice
+      text: "Nice!"
+    - id: m_hmm
+      text: "Hmm!"
+    - id: m_wow
+      text: "Wow!"
+    - id: m_hey
+      text: "Hey!"
+    - id: m_aha
+      text: "Aha!"
+
+  completion:
+    not_enough:
+      # 항상 동일 톤 / 랜덤 없음 권장
+      - id: ne_more_color
+        text: "Let’s color a little more."
+      - id: ne_add_more
+        text: "Want to add more colors?"
+      - id: ne_keep_going
+        text: "We can keep going!"
+      - id: ne_try_again
+        text: "Let’s try again."
+
+    enough:
+      - id: ok_finished
+        text: "You finished it!"
+      - id: ok_so_colorful
+        text: "So colorful!"
+      - id: ok_i_like_it
+        text: "I like how you colored it."
+      - id: ok_all_done
+        text: "All done!"
+      - id: ok_looks_great
+        text: "That looks great!"
+
+  composition_rules:
+    allowed_patterns:
+      - prefix + color
+      - prefix + color + suffix
+      - prefix + tool
+      - prefix + tool + suffix
+      - micro_only
+    disallowed_patterns:
+      - color_only_with_suffix
+      - prefix_only_with_suffix
+      - micro_with_any_other_clip
+    notes:
+      - Prefix must always come first
+      - Variable must be exactly one item
+      - Suffix is optional
+      - Micro reactions never combine
+
+  file_naming_convention:
+    prefix: "p_{id}.mp3"
+    color: "c_{id}.mp3"
+    tool: "t_{id}.mp3"
+    suffix: "s_{id}.mp3"
+    micro: "m_{id}.mp3"
+    completion: "{id}.mp3"

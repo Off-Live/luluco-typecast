@@ -1,0 +1,179 @@
+# Typecast batch TTS manifest
+# Fill in model + voice_id for each set (or per line), then run:
+#   export TYPECAST_API_KEY="..."
+#   python typecast_batch_tts.py --manifest voice_sets.yaml --out out_audio
+#
+# Notes:
+# - audio_format: wav or mp3 (per SDK Output(audio_format="wav"/"mp3"))
+# - emotion_preset: normal | happy | sad | angry
+# - emotion_intensity: 0.0 ~ 2.0
+#
+# Docs: https://typecast.ai/docs/sdk/python
+
+defaults:
+  model: "ssfm-v21"
+  voice_id: "tc_62fb679683a541c351dc7c3a"   # <-- set your default voice_id here
+  language: "en"
+  output_format: "mp3"
+  prompt:
+    emotion_preset: "happy"
+    emotion_intensity: 1.2
+  output:
+    volume: 120      # 0-200
+    pitch: 100       # typical around 80-120 (SDK docs)
+    tempo: 100       # typical around 80-120 (SDK docs)
+
+sets:
+  # =========================
+  # 1) App UI (Parent Zone)
+  # =========================
+  - name: "ui-parent-en"
+    defaults:
+      language: "en"
+      prompt:
+        emotion_preset: "normal"
+        emotion_intensity: 1.0
+    lines:
+      - key: "confirm-exit-title"
+        text: "Leave coloring?"
+      - key: "confirm-exit-body"
+        text: "If you leave now, your progress will be saved."
+      - key: "confirm-exit-stay"
+        text: "Stay"
+      - key: "confirm-exit-leave"
+        text: "Leave"
+      - key: "time-limit-title"
+        text: "Set a time limit"
+      - key: "time-limit-body"
+        text: "Choose how long your child can play today."
+      - key: "language-title"
+        text: "Language"
+      - key: "language-body"
+        text: "Choose English or Korean."
+
+  - name: "ui-parent-ko"
+    defaults:
+      language: "ko"
+      prompt:
+        emotion_preset: "normal"
+        emotion_intensity: 1.0
+    lines:
+      - key: "confirm-exit-title"
+        text: "색칠을 종료할까요?"
+      - key: "confirm-exit-body"
+        text: "지금 나가도 진행 상황은 저장돼요."
+      - key: "confirm-exit-stay"
+        text: "계속하기"
+      - key: "confirm-exit-leave"
+        text: "나가기"
+      - key: "time-limit-title"
+        text: "사용 시간 설정"
+      - key: "time-limit-body"
+        text: "오늘은 얼마나 할까요?"
+      - key: "language-title"
+        text: "언어"
+      - key: "language-body"
+        text: "영어 또는 한국어를 선택해요."
+
+  # =========================
+  # 2) Kid Guidance (Lulu VO)
+  # =========================
+  - name: "kid-guide-en"
+    defaults:
+      language: "en"
+      prompt:
+        emotion_preset: "happy"
+        emotion_intensity: 1.6
+    lines:
+      - key: "welcome"
+        text: "Hi! I’m Lulu. Let’s color together!"
+      - key: "start"
+        text: "Ready? Let’s begin!"
+      - key: "try-again"
+        text: "Nice try! Let’s do it one more time."
+      - key: "great-job"
+        text: "Great job! That looks amazing!"
+      - key: "finished"
+        text: "All done! You made it beautiful!"
+      - key: "transition-trigger"
+        text: "Ta-da!"
+
+  - name: "kid-guide-ko"
+    defaults:
+      language: "ko"
+      prompt:
+        emotion_preset: "happy"
+        emotion_intensity: 1.6
+    lines:
+      - key: "welcome"
+        text: "안녕! 나는 루루야. 같이 색칠하자!"
+      - key: "start"
+        text: "준비됐지? 시작해볼까!"
+      - key: "try-again"
+        text: "괜찮아! 한 번 더 해보자."
+      - key: "great-job"
+        text: "와! 정말 잘했어!"
+      - key: "finished"
+        text: "완성! 너무 예쁘다!"
+      - key: "transition-trigger"
+        text: "짜잔!"
+
+  # =================================
+  # 3) Transition / Magic FX Callouts
+  # =================================
+  - name: "transition-en"
+    defaults:
+      language: "en"
+      prompt:
+        emotion_preset: "happy"
+        emotion_intensity: 1.8
+      output_format: "wav"
+    lines:
+      - key: "magic-swish"
+        text: "Magic time!"
+      - key: "sparkle"
+        text: "Sparkle!"
+      - key: "next"
+        text: "Let’s bring it to life!"
+
+  - name: "transition-ko"
+    defaults:
+      language: "ko"
+      prompt:
+        emotion_preset: "happy"
+        emotion_intensity: 1.8
+      output_format: "wav"
+    lines:
+      - key: "magic-swish"
+        text: "마법 시간!"
+      - key: "sparkle"
+        text: "반짝!"
+      - key: "next"
+        text: "살아나게 해볼까!"
+
+  # =================================
+  # 4) Placeholder packs you can fill
+  # =================================
+  - name: "lesson-phrases-en"
+    defaults:
+      language: "en"
+      prompt:
+        emotion_preset: "normal"
+        emotion_intensity: 1.2
+    lines:
+      - key: "prompt-01"
+        text: "PLACEHOLDER: Add your lesson line here."
+      - key: "prompt-02"
+        text: "PLACEHOLDER: Add your lesson line here."
+
+  - name: "lesson-phrases-ko"
+    defaults:
+      language: "ko"
+      prompt:
+        emotion_preset: "normal"
+        emotion_intensity: 1.2
+    lines:
+      - key: "prompt-01"
+        text: "PLACEHOLDER: 여기에 문구를 추가하세요."
+      - key: "prompt-02"
+        text: "PLACEHOLDER: 여기에 문구를 추가하세요."
