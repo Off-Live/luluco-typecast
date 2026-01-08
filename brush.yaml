@@ -1,0 +1,72 @@
+---
+lulu_reaction_voice:
+  version: "1.0"
+  locale: "en-US"
+
+  meta:
+    design_principles:
+      - short_and_light
+      - no_judgement
+      - no_instruction
+      - offline_first
+      - composable_audio_only
+    notes:
+      - Long lines are used for first-time or long-time-no-see tools
+      - Short lines are for regular taps
+      - Long lines should describe the tool vibe (no commands)
+
+  timing:
+    cooldown:
+      voice_seconds: 10
+      micro_seconds: 2
+    burst:
+      window_seconds: 3
+      threshold_changes: 2
+    debounce_silence_seconds: 2.5
+
+  variables:
+    tools:
+      # id 규칙: t_{tool}
+      # text는 단독 명사 (UI/조합용)
+      - id: t_brush
+        text: "brush"
+        name: "Brush"
+      - id: t_crayon
+        text: "crayon"
+        name: "Crayon"
+      - id: t_marker
+        text: "marker"
+        name: "Marker"
+      - id: t_eraser
+        text: "eraser"
+        name: "Eraser"
+
+  utterances:
+    # “확정 문장” 버전 (바로 녹음/tts 가능)
+    long_by_tool:
+      - id: u_long_tool_brush
+        tool_id: t_brush
+        text: "Brush! Brush feels soft. Brush!"
+      - id: u_long_tool_crayon
+        tool_id: t_crayon
+        text: "Crayon! Swipe, swipe. Crayon!"
+      - id: u_long_tool_marker
+        tool_id: t_marker
+        text: "Marker! Clean lines. Marker!"
+      - id: u_long_tool_eraser
+        tool_id: t_eraser
+        text: "Eraser. Clean and quiet. Eraser."
+
+    short_by_tool:
+      - id: u_short_tool_brush
+        tool_id: t_brush
+        text: "Brush!"
+      - id: u_short_tool_crayon
+        tool_id: t_crayon
+        text: "Crayon!"
+      - id: u_short_tool_marker
+        tool_id: t_marker
+        text: "Marker!"
+      - id: u_short_tool_eraser
+        tool_id: t_eraser
+        text: "Eraser!"
